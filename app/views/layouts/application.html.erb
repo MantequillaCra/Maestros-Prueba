@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PaginaFea</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header>
+      <div id="sections">
+        <table>
+          <tr>
+            <strong><%= link_to "Inicio", root_path , class:"section" %></strong>
+          </tr>
+          <tr>
+            <strong><%= link_to "Articulos", articles_url , class:"section" %></strong>
+          </tr>
+          <tr>
+            <strong><%= link_to "Maestros", teachers_url, class:"section" %></strong>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <%= form_tag "/search", method: :get do %>
+          <%= text_field_tag :termino, nil, placeholder:"Que estas buscando?" %>
+          <%= content_tag :button, type: :submit do %>
+            Buscar
+          <% end  %>
+        <% end %>
+      </div>
+  </header>
+    <%= yield %>
+  </body>
+</html>

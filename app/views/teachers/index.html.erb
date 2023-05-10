@@ -1,0 +1,14 @@
+<h1>Maestros</h1>
+
+<ul style="list-style: none;">
+  <% @teachers.each do |teacher| %>
+    <li class="article">
+      <h2> <%= link_to teacher.title, teacher %></h2>
+     <strong> Escrito Por : </strong> <%=teacher.user.username %> <br>
+      <strong> Escrito el : </strong> <%=teacher.created_at %>
+    </li>
+    <hr>
+  <% end %>
+</ul>
+
+<strong><%= link_to "New teacher", new_teacher_path %></strong>

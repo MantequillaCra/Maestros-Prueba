@@ -1,0 +1,31 @@
+<div class="article">
+  <div>
+    <h1><%= @article.title %></h1>
+
+    <p><%= @article.body %></p>
+  </div>
+  <% if current_user %>
+    <%if current_user.role == "admin" || current_user == @article.user %>
+      <ul class="article_section">
+        <li><%= link_to "Edit", edit_article_path(@article) %></li>
+        <li><%= link_to "Destroy", article_path(@article), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %></li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="comment_section">
+  <h2>Opiniones</h2>
+  <%= render @article.comments %>
+  <% if current_user %>
+    <h2>Añade un comentario:</h2>
+    <%= render 'comments/form' %>
+  <% else %>
+    <h2>Para añadir un comentario necesira iniciar sesion</h2>
+    <%= link_to "Inicia sesión", new_user_session_path%>
+    <%= link_to "Crea una cuenta!", new_user_registration_path%>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<%= form_with model: [ @teacher, @teacher.teacher_comments.build ] do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.submit %>
+  </p>
+<% end %>

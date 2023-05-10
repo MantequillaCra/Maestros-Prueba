@@ -1,0 +1,8 @@
+<h1> Resultados</h1>
+<% @results.each do |a|%>
+  <ul>
+    <li>
+      <%= link_to a.title, a %> <br>
+    </li>
+  </ul>
+<% end %>

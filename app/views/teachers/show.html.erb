@@ -1,0 +1,28 @@
+<div class="article">
+  <div>
+    <h1><%= @teacher.title %></h1>
+
+  </div>
+  <div>
+    <ul>
+      <li><%= link_to "Edit", edit_teacher_path(@teacher) %></li>
+      <li><%= link_to "Destroy", teacher_path(@teacher), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %></li>
+    </ul>
+  </div>
+</div>
+
+<div class="comment_section">
+  <h2>Opiniones</h2>
+  <%= render @teacher.teacher_comments %>
+  <% if current_user %>
+    <h2>Añade un comentario:</h2>
+  <%= render 'teacher_comments/form' %>
+  <% else %>
+    <h2>Para añadir un comentario necesira iniciar sesion</h2>
+    <%= link_to "Inicia sesión", new_user_session_path%>
+    <%= link_to "Crea una cuenta!", new_user_registration_path%>
+  <% end %>
+</div>

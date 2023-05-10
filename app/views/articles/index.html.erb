@@ -1,0 +1,38 @@
+<h1>Articulos</h1>
+
+<ul style="list-style: none;">
+  <% @articles.each do |article| %>
+    <li class="article">
+      <h2> <%= link_to article.title, article %></h2>
+      <strong> Articulo de : </strong> <%=article.user.username %> <br>
+      <strong> Escrito el : </strong> <%=article.created_at %>
+      <%= article.comments.length
+      %>
+    </li>
+    <hr>
+  <% end %>
+</ul>
+
+<% if current_user%>
+  <strong><%= link_to "New Article", new_article_path %></strong>
+<% else %>
+  <p> Para añadir un articulo debes iniciar sesion </p>
+  <%= link_to "Inicia sesión", new_user_session_path%>
+  <%= link_to "Crea una cuenta!", new_user_registration_path%>
+<% end %>
+
+<table>
+  <tr>
+    <td><%= link_to "Anterior", articles_path(page:@page-1) %></td>
+    <td>
+      <% if @articles.length == @articles_per_page %>
+        <%= link_to "Sigiente", articles_path(page:@page+1) %>
+      <% else %>
+        <%= link_to "Sigiente", articles_path(page:@page) %>
+      <% end %>
+    </td>
+  </tr>
+  <%= @page %> <=
+  <%= @page_count %>
+</table>
+
